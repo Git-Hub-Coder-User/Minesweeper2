@@ -1,4 +1,5 @@
 import random
+import pygame
 
 from tile import(
     Tile, 
@@ -71,6 +72,8 @@ class Grid:
                     temp = self.grid[y][x]
                     # print(type(temp))
                     temp.display(screen)
+                    if type(temp) == Bomb:
+                        print((y * 100) + 50, (x * 100) + 50)
                 except:
                     pass
 

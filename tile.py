@@ -7,6 +7,7 @@ class Tile(ABC):
 		self.position = position
 	
 	def display(self, screen):
+		print(type(self))
 		y, x = self.position
 		if (y + x) % 2 == 0:
 			y = (y * 100) + 50
@@ -35,12 +36,9 @@ class Bomb(Tile):
 	def __str__(self):
 		return "x"
 
-	def display(self):
-		# screen.blit(thingies)
-		pass
 
 
-		
+
 
 class Blank(Tile):
 	def __init__(self, position = None):
@@ -62,6 +60,10 @@ class Cover(Tile):
 	def __str__(self):
 		return "Cover"
 	
+	def display(screen):
+		# super.display(screen)
+		pass
+	
 	def clicked(self):
 		del self
 
@@ -73,7 +75,3 @@ class Number(Tile):
 
 	def __str__(self):
 		return str(self.number)
-
-	def display(self):
-		# screen.blit(thingies)
-		pass
