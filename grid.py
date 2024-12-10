@@ -70,10 +70,9 @@ class Grid:
                 try: 
                     # print(f"{y}, {x}")
                     temp = self.grid[y][x]
-                    # print(type(temp))
+                    print(temp)
+                    # print("this is the visual set up", type(temp))
                     temp.display(screen)
-                    if type(temp) == Bomb:
-                        print((y * 100) + 50, (x * 100) + 50)
                 except:
                     pass
 

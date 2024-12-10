@@ -23,13 +23,13 @@ def main():
 
     background = Grid()
     background.generate_bombs()
-    # print(background)
+    print(background)
     background.convert_grid()
     background.visual_set_up(screen)
 
     foreground = Grid(Cover)
     #print(foreground)
-    foreground.visual_set_up(screen)
+    # foreground.visual_set_up(screen)
 
     while True:
         for event in pygame.event.get():
@@ -42,11 +42,17 @@ def main():
                 print(pygame.mouse.get_pos())
                 y = (y - 50) / 100
                 x = (x - 50) / 100
+                print(y, x)
                 # foreground.delete((int(y), int(x)))
         
 
+        # background.visual_set_up(screen)
+
+
         pygame.display.update()
         clock.tick(30)
+
+        
 
         # [print(pygame.mouse.get_pos())]
     
