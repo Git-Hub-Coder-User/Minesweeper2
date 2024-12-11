@@ -40,6 +40,9 @@ class Bomb(Tile):
 	def display(self, screen):
 		super().display(screen)
 		self.bomb = pygame.image.load("img/bomb_img.png")
+		self.bomb = pygame.transform.scale(self.bomb, (75, 75))
+		self.tile_rect.centerx += 75
+		self.tile_rect.centery += 50
 		screen.blit(self.bomb, self.tile_rect)
 
 class Blank(Tile):
@@ -81,5 +84,4 @@ class Number(Tile):
 	def display(self, screen):
 		super().display(screen)
 		surface = self.font.render(str(self.number), True, (225, 0, 0))
-		print(self.tile_rect)
 		screen.blit(surface, self.tile_rect)

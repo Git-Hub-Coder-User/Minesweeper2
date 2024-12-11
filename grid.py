@@ -56,11 +56,12 @@ class Grid:
     
     def update_grid(self, col, row):
         for mod in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
-            y = mod[0]
-            x = mod[1]
+            y = mod[1]
+            x = mod[0]
             try:
                 if type(self.grid[y][x]) != Bomb:
                     self.grid[row + y][col + x] += 1 
+                    print(f"{row + y}, {col + x}")
             except:
                 pass
     
@@ -68,10 +69,8 @@ class Grid:
         for y in range(8):
             for x in range(8):
                 try: 
-                    # print(f"{y}, {x}")
+                    # print(f"{y}, {x}, {self.grid[y][x]}")
                     temp = self.grid[y][x]
-                    print(temp)
-                    # print("this is the visual set up", type(temp))
                     temp.display(screen)
                 except:
                     pass
