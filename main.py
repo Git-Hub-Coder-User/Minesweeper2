@@ -1,6 +1,7 @@
 import pygame
 import sys
 from grid import Grid
+from test import grid
 from tile import(
     Tile, 
     Blank, 
@@ -23,13 +24,14 @@ def main():
 
     background = Grid()
     background.generate_bombs()
+    #background = grid
     print(background)
     background.convert_grid()
     background.visual_set_up(screen)
 
     foreground = Grid(Cover)
     #print(foreground)
-    # foreground.visual_set_up(screen)
+    #foreground.visual_set_up(screen)
 
     while True:
         for event in pygame.event.get():

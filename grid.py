@@ -60,8 +60,7 @@ class Grid:
             x = mod[0]
             try:
                 if type(self.grid[y][x]) != Bomb:
-                    self.grid[row + y][col + x] += 1 
-                    print(f"{row + y}, {col + x}")
+                    self.grid[row + y][col + x] += 1
             except:
                 pass
     
@@ -72,7 +71,6 @@ class Grid:
                     # print(f"{y}, {x}, {self.grid[y][x]}")
                     temp = self.grid[y][x]
                     temp.display(screen)
-                    string = input("Press enter to continue")
                 except:
                     pass
 

@@ -5,10 +5,9 @@ from abc import ABC, abstractmethod
 class Tile(ABC):
 	def __init__(self, position = None):
 		self.position = position
-		self.font = pygame.font.SysFont(None, 48)
+		#self.font = pygame.font.SysFont(None, 48)
 	
 	def display(self, screen):
-		# print("this is display from Tile", type(self))
 		y, x = self.position
 		if (y + x) % 2 == 0:
 			y = (y * 100)
@@ -83,5 +82,6 @@ class Number(Tile):
 	
 	def display(self, screen):
 		super().display(screen)
-		surface = self.font.render(str(self.number), True, (225, 0, 0))
+		surface = self.font.render(str(self.number), True, (225, (self.y + self.x) * 3, 0))
+		print("This is Number's display method: ",self.y, self.x)
 		screen.blit(surface, self.tile_rect)
