@@ -18,7 +18,7 @@ clock = pygame.time.Clock()
 def main():
     #Use fill for the back
     # img\backgroud_img.png
-    
+    #test deleteme
     screen.fill((225, 225, 225))
 
 
