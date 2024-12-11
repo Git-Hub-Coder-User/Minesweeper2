@@ -72,6 +72,7 @@ class Grid:
                     # print(f"{y}, {x}, {self.grid[y][x]}")
                     temp = self.grid[y][x]
                     temp.display(screen)
+                    string = input("Press enter to continue")
                 except:
                     pass
 
