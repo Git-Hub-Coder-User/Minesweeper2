@@ -1,7 +1,6 @@
 import pygame
 import sys
 from grid import Grid
-from test import grid
 from tile import(
     Tile, 
     Blank, 
@@ -18,14 +17,11 @@ clock = pygame.time.Clock()
 def main():
     #Use fill for the back
     # img\backgroud_img.png
-    #test deleteme
     screen.fill((225, 225, 225))
 
 
     background = Grid()
     background.generate_bombs()
-    #background = grid
-    print(background)
     background.convert_grid()
     background.visual_set_up(screen)
 

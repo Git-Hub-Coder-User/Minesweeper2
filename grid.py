@@ -26,7 +26,7 @@ class Grid:
     def __str__(self):
         listed = ""
         for i in range(8):
-            listed += f"{self.grid[i]}\n"
+            listed += f"{str(self.grid[i])}\n"
         return listed
     
     def convert_grid(self):
@@ -73,6 +73,17 @@ class Grid:
                     temp.display(screen)
                 except:
                     pass
+    
+    #def get_grid(self):  
+    #    temp = []
+    #    for i in range(8):
+    #        for j in range(8):
+    #            if type(self.grid[i][j]) == Bomb:
+    #                temp[i][j] = "x"
+    #            else:
+    #                temp[i][j] = self.grid[i][j]
+        
+    #    return temp
 
     #This might blow up
     def delete(self, location):
