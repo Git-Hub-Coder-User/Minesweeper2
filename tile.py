@@ -6,18 +6,18 @@ class Tile(ABC):
 	def __init__(self, position = None):
 		self.position = position
 		self.font = pygame.font.SysFont(None, 48)
+		self.y, self.x = self.position
 	
 	def display(self, screen):
-		y, x = self.position
-		converted_y = (y * 100) 
-		converted_x = (x * 100)
-		if (y + x) % 2 == 0:
+		converted_y = (self.y * 100) 
+		converted_x = (self.x * 100)
+		if (self.y + self.x) % 2 == 0:
 			self.tile = pygame.image.load("img/dark_tile.png").convert_alpha()
 			self.tile = pygame.transform.scale(self.tile, (100, 100))
 			self.tile_rect = self.tile.get_rect(center = (converted_x, converted_y))
 			screen.blit(self.tile, (converted_x, converted_y))
 		
-		if (y + x) % 2 == 1:
+		if (self.y + self.x) % 2 == 1:
 			self.tile = pygame.image.load("img/light_tile.png").convert_alpha()
 			self.tile = pygame.transform.scale(self.tile, (100, 100))
 			self.tile_rect = self.tile.get_rect(center = (converted_x, converted_y))
@@ -27,8 +27,6 @@ class Tile(ABC):
 class Bomb(Tile):
 	def __init__(self, position):
 		super().__init__(position)
-		#Make this part of the parent class if possible
-		self.y, self.x = position
 		self.font = pygame.font.SysFont(None, 24)
 	
 	def __str__(self):
@@ -40,11 +38,11 @@ class Bomb(Tile):
 		self.bomb = pygame.transform.scale(self.bomb, (75, 75))
 		self.tile_rect.centerx += 75
 		self.tile_rect.centery += 50
-		#screen.blit(self.bomb, self.tile_rect)
+		screen.blit(self.bomb, self.tile_rect)
 
 		surface = self.font.render(f"{self.x}, {self.y}", True, (225, (self.y + self.x) * 10, 0))
 
-		#screen.blit(surface, self.tile_rect)
+		screen.blit(surface, self.tile_rect)
 
 		#print("This is Bomb's display method: ", self.x, self.y)
 
@@ -52,7 +50,6 @@ class Bomb(Tile):
 class Blank(Tile):
 	def __init__(self, position = None):
 		super().__init__(position)
-		y, x = position
 	
 	def __str__(self):
 		return "Blank"
@@ -65,7 +62,6 @@ class Blank(Tile):
 class Cover(Tile):
 	def __init__(self, position = None):
 		super().__init__(position)
-		y, x = position
 		# screen.blit(thingies)
 
 
@@ -82,7 +78,6 @@ class Cover(Tile):
 class Number(Tile):
 	def __init__(self, position = None, number = 0):
 		super().__init__(position)
-		self.y, self.x = position
 		self.number = number
 
 	def __str__(self):
@@ -96,7 +91,7 @@ class Number(Tile):
 
 		#print("This is Number's display method: ", self.y, self.x)
 
-		self.tile_rect.centerx += 75
-		self.tile_rect.centery += 75
+		self.tile_rect.centerx += 75 + 12
+		self.tile_rect.centery += 75 + 12
 
 		screen.blit(surface, self.tile_rect)

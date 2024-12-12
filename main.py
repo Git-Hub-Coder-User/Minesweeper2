@@ -20,14 +20,14 @@ def main():
     screen.fill((225, 225, 225))
 
 
-    background = Grid(0)
+    background = Grid()
     background.generate_bombs()
     background.convert_grid()
     background.visual_set_up(screen)
 
-    #foreground = Grid(Cover)
+    foreground = Grid(Cover)
     #print(foreground)
-    #foreground.visual_set_up(screen)
+    foreground.visual_set_up(screen)
 
     while True:
         for event in pygame.event.get():
