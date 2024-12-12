@@ -40,13 +40,13 @@ class Bomb(Tile):
 		self.bomb = pygame.transform.scale(self.bomb, (75, 75))
 		self.tile_rect.centerx += 75
 		self.tile_rect.centery += 50
-		screen.blit(self.bomb, self.tile_rect)
+		#screen.blit(self.bomb, self.tile_rect)
 
 		surface = self.font.render(f"{self.x}, {self.y}", True, (225, (self.y + self.x) * 10, 0))
 
-		screen.blit(surface, self.tile_rect)
+		#screen.blit(surface, self.tile_rect)
 
-		print("This is Bomb's display method: ", self.x, self.y)
+		#print("This is Bomb's display method: ", self.x, self.y)
 
 
 class Blank(Tile):

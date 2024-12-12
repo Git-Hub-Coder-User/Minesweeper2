@@ -68,7 +68,7 @@ class Grid:
         for y in range(8):
             for x in range(8):
                 try: 
-                    # print(f"{y}, {x}, {self.grid[y][x]}")
+                    print(f"{x}, {y}, {self.grid[y][x]}")
                     temp = self.grid[y][x]
                     temp.display(screen)
                 except:
