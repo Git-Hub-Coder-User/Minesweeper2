@@ -21,7 +21,6 @@ def main():
     background = Grid()
     background.generate_bombs()
     background.convert_grid()
-    background.visual_set_up(screen)
 
     foreground = Grid("")
     #print(foreground)
@@ -39,7 +38,7 @@ def main():
                 #print(pygame.mouse.get_pos())
                 y = y / 100
                 x = x / 100
-                print(int(y), int(x))
+                #print(int(y), int(x))
                 foreground.delete(background, screen, (int(y), int(x)))
         
 

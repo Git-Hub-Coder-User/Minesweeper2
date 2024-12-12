@@ -101,5 +101,5 @@ class Grid:
 
         
         temp = background.grid[y][x]
-        print(temp)
+        #print(temp)
         temp.display(screen)

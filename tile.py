@@ -60,8 +60,8 @@ class Blank(Tile):
 class Cover(Tile):
 	def __init__(self, position = None):
 		super().__init__(position)
-		self.light = "img/light_cover"
-		self.dark = "img/dark_cover"
+		self.light = "img/light_cover.png"
+		self.dark = "img/dark_cover.png"
 		# screen.blit(thingies)
 
 
