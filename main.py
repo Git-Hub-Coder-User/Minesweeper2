@@ -15,8 +15,6 @@ clock = pygame.time.Clock()
 
 
 def main():
-    #Use fill for the back
-    # img\backgroud_img.png
     screen.fill((225, 225, 225))
 
 

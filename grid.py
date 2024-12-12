@@ -17,11 +17,9 @@ class Grid:
 
         for i in range(size):
             temp = []
-            for i in range(size):
-                temp = []
-                for j in range(size):
-                    temp.append(self.fill)
-                self.grid.append(temp)
+            for j in range(size):
+                temp.append(self.fill)
+            self.grid.append(temp)
         
     def __str__(self):
         listed = ""
@@ -68,11 +66,13 @@ class Grid:
                 pass
     
     def visual_set_up(self, screen):
+        print(self.grid)
         for y in range(8):
             for x in range(8):
                 try: 
                     #print(f"{x}, {y}, {self.grid[y][x]}")
                     temp = self.grid[y][x]
+                    print(temp)
                     temp.display(screen)
                 except:
                     pass

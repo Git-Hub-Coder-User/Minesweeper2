@@ -54,10 +54,6 @@ class Blank(Tile):
 	def __str__(self):
 		return "Blank"
 	
-	def display(self, screen):
-		super().display(screen)
-	
-
 
 class Cover(Tile):
 	def __init__(self, position = None):
@@ -66,11 +62,11 @@ class Cover(Tile):
 
 
 	def __str__(self):
-		return "Cover"
+		return "cover"
 	
-	def display(screen):
-		# super.display(screen)
-		pass
+	def display(self, screen):
+		print("Called")
+		super().display(screen)
 	
 	def clicked(self):
 		del self
