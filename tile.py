@@ -7,18 +7,20 @@ class Tile(ABC):
 		self.position = position
 		self.font = pygame.font.SysFont(None, 48)
 		self.y, self.x = self.position
+		self.dark = "img/dark_tile.png"
+		self.light = "img/light_tile.png"
 	
 	def display(self, screen):
 		converted_y = (self.y * 100) 
 		converted_x = (self.x * 100)
 		if (self.y + self.x) % 2 == 0:
-			self.tile = pygame.image.load("img/dark_tile.png").convert_alpha()
+			self.tile = pygame.image.load(self.dark).convert_alpha()
 			self.tile = pygame.transform.scale(self.tile, (100, 100))
 			self.tile_rect = self.tile.get_rect(center = (converted_x, converted_y))
 			screen.blit(self.tile, (converted_x, converted_y))
 		
 		if (self.y + self.x) % 2 == 1:
-			self.tile = pygame.image.load("img/light_tile.png").convert_alpha()
+			self.tile = pygame.image.load(self.light).convert_alpha()
 			self.tile = pygame.transform.scale(self.tile, (100, 100))
 			self.tile_rect = self.tile.get_rect(center = (converted_x, converted_y))
 			screen.blit(self.tile, (converted_x, converted_y))
@@ -58,6 +60,8 @@ class Blank(Tile):
 class Cover(Tile):
 	def __init__(self, position = None):
 		super().__init__(position)
+		self.light = "img/light_cover"
+		self.dark = "img/dark_cover"
 		# screen.blit(thingies)
 
 

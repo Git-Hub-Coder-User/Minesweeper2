@@ -37,8 +37,8 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
                 #print(pygame.mouse.get_pos())
-                y = (y - 50) / 100
-                x = (x - 50) / 100
+                y = y / 100
+                x = x / 100
                 print(int(y), int(x))
                 foreground.delete(background, screen, (int(y), int(x)))
         
