@@ -23,8 +23,9 @@ def main():
     background.convert_grid()
     background.visual_set_up(screen)
 
-    foreground = Grid(Cover)
+    foreground = Grid("")
     #print(foreground)
+    foreground.convert_grid()
     foreground.visual_set_up(screen)
 
     while True:
@@ -34,16 +35,19 @@ def main():
                 sys.exit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                y, x = pygame.mouse.get_pos()
-                print(pygame.mouse.get_pos())
+                x, y = pygame.mouse.get_pos()
+                #print(pygame.mouse.get_pos())
                 y = (y - 50) / 100
                 x = (x - 50) / 100
-                print(y, x)
-                # foreground.delete((int(y), int(x)))
+                print(int(y), int(x))
+                foreground.delete(background, screen, (int(y), int(x)))
         
 
         # background.visual_set_up(screen)
 
+
+        
+        #foreground.visual_set_up(screen)
 
         pygame.display.update()
         clock.tick(30)

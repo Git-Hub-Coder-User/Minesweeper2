@@ -65,7 +65,7 @@ class Cover(Tile):
 		return "cover"
 	
 	def display(self, screen):
-		print("Called")
+		#print("Called")
 		super().display(screen)
 	
 	def clicked(self):

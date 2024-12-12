@@ -33,6 +33,8 @@ class Grid:
                 # print(y, x, self.grid[y][x])
                 if type(self.grid[y][x]) == Bomb:
                     pass
+                elif self.grid[y][x] == "":
+                    self.grid[y][x] = Cover(position = (y, x))
                 elif self.grid[y][x] == 0:
                     self.grid[y][x] = Blank(position=(y, x))
                 elif self.grid[y][x] > 0 and self.grid[y][x]:
@@ -40,6 +42,7 @@ class Grid:
                     self.grid[y][x] = Number(position = (y, x), number = num)
                 else:
                     pass
+
     def generate_bombs(self):
         #i should be 16
         for i in range(16):
@@ -66,13 +69,13 @@ class Grid:
                 pass
     
     def visual_set_up(self, screen):
-        print(self.grid)
+        #print(self.grid)
         for y in range(8):
             for x in range(8):
                 try: 
-                    #print(f"{x}, {y}, {self.grid[y][x]}")
                     temp = self.grid[y][x]
-                    print(temp)
+                    #print(f"{x}, {y}, {self.grid[y][x]}")
+                    #print(type(temp))
                     temp.display(screen)
                 except:
                     pass
@@ -89,9 +92,14 @@ class Grid:
     #    return temp
 
     #This might blow up
-    def delete(self, location):
+    def delete(self, background, screen, location):
         y, x = location
-        temp = self.grid[y][x]
-        self.grid[y][x] = 0
-        del temp
-    
+
+        #temp = self.grid[y][x]
+        #self.grid[y][x] = None
+        #del temp
+
+        
+        temp = background.grid[y][x]
+        print(temp)
+        temp.display(screen)
