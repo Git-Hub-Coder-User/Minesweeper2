@@ -9,6 +9,9 @@ from tile import(
     Bomb, 
 )
 
+class NegativeNumber(Exception):
+    pass
+
 class Grid:
     def __init__(self, fill = 0, size = 8):
         self.fill = fill
@@ -79,17 +82,6 @@ class Grid:
                     temp.display(screen)
                 except:
                     pass
-    
-    #def get_grid(self):  
-    #    temp = []
-    #    for i in range(8):
-    #        for j in range(8):
-    #            if type(self.grid[i][j]) == Bomb:
-    #                temp[i][j] = "x"
-    #            else:
-    #                temp[i][j] = self.grid[i][j]
-        
-    #    return temp
 
     #This might blow up
     def delete(self, background, screen, location):
@@ -103,3 +95,16 @@ class Grid:
         temp = background.grid[y][x]
         #print(temp)
         temp.display(screen)
+
+        for i in range(3):
+            y2, x2 = location
+            mod = (random.randint(-1, 1), random.randint(-1, 1))
+            x2 += mod[0]
+            y2 += mod[1]
+            print(y2, x2)
+            try: 
+                if x2 >= 0 and y2 > 0: 
+                    if type(background.grid[y2][x2]) != Bomb:
+                            background.grid[y2][x2].display(screen)
+            except:
+                pass
