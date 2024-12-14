@@ -18,7 +18,7 @@ def main():
     screen.fill((225, 225, 225))
 
 
-    background = Grid()
+    background = Grid(0)
     #background.generate_bombs()
     #print(background.grid)
     background.convert_grid()

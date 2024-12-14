@@ -119,17 +119,23 @@ class Grid:
                     if type(background.grid[y2][x2]) != Bomb:
                         background.grid[y2][x2].display(screen)
                         if type(background.grid[y2][x2]) == Blank:
-                            print("Made it to line 122", i)
-                            background.blank_tile(screen, [y2][x2])
+                            background.blank_tile(screen, (y2, x2))
+                            print("Made it to line 123", i)
             except:
                 pass
         
     def blank_tile(self, screen, location):
-        print("This is in blank_tile(): ", self)
+        print("This is in blank_tile()")
         for mod in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
             y, x = location
             try:
                 if (y + mod[1]) >= 0 and  (x + mod[0]) >= 0: 
-                    self.grid[y + mod[1]][x + mod[0]].delete(self, screen, location)
+                    print("Before the delete")
+                    #self.grid[y + mod[1]][x + mod[0]].delete(self, screen, location)
+                    self.grid[y + mod[1]][x + mod[0]].delete(screen)
+                    print("After the delete")
             except:
-                pass
+                print("Except ran")
+                print(self.grid[y + mod[1]][x + mod[0]])
+    
+        self.grid[y + mod[1]][x + mod[0]].delete(self, screen, location)
