@@ -125,11 +125,11 @@ class Grid:
                 pass
         
     def blank_tile(self, screen, location):
+        print("This is in blank_tile(): ", self)
         for mod in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
             y, x = location
             try:
                 if (y + mod[1]) >= 0 and  (x + mod[0]) >= 0: 
-                    if type(self.grid[y + row][x + col]) != Bomb:
-                        self.grid[y + mod[1]][x + mod[0]] += 1
+                    self.grid[y + mod[1]][x + mod[0]].delete(self, screen, location)
             except:
                 pass
