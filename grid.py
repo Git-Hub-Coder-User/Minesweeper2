@@ -117,7 +117,19 @@ class Grid:
                 #print(x2, y2, background.grid[y2][x2])
                 if x2 >= 0 and y2 > 0: 
                     if type(background.grid[y2][x2]) != Bomb:
-                            background.grid[y2][x2].display(screen)
+                        background.grid[y2][x2].display(screen)
+                        if type(background.grid[y2][x2]) == Blank:
+                            print("Made it to line 122", i)
+                            background.blank_tile(screen, [y2][x2])
             except:
                 pass
-        #print("\n")
+        
+    def blank_tile(self, screen, location):
+        for mod in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
+            y, x = location
+            try:
+                if (y + mod[1]) >= 0 and  (x + mod[0]) >= 0: 
+                    if type(self.grid[y + row][x + col]) != Bomb:
+                        self.grid[y + mod[1]][x + mod[0]] += 1
+            except:
+                pass

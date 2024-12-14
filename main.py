@@ -19,7 +19,7 @@ def main():
 
 
     background = Grid()
-    background.generate_bombs()
+    #background.generate_bombs()
     #print(background.grid)
     background.convert_grid()
     #background.visual_set_up(screen)
