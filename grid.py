@@ -52,8 +52,8 @@ class Grid:
             while True:
                 col = random.randint(0, 7)
                 row = random.randint(0, 7)
-                #col = 3
-                #row = i
+                #col = 7 - i
+                #row = 0
                 # print(col, row)
                 # print(row, col)
                 if type(self.grid[row][col]) != Bomb:
@@ -62,14 +62,26 @@ class Grid:
                     break
     
     def update_grid(self, col, row):
+        i = 0
         for mod in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
             y = mod[1]
             x = mod[0]
+            #print(i)
             try:
-                if type(self.grid[y][x]) != Bomb:
-                    self.grid[row + y][col + x] += 1
+                if (y + row) >= 0 and  (col + x) >= 0: 
+                    if type(self.grid[y + row][x + col]) != Bomb:
+                        #print(f"Item: {self.grid[col + x][row + y]}, Location: {col + x}, {row + y}")
+                        self.grid[row + y][col + x] += 1
+                else:
+                    #print(f"Failed the first test: {col + x}, {row + y}")
+                    #print((y + col) >= 0)
+                    #print((x + row) >= 0)
+                    pass
             except:
+                #print("The except ran", x + col, y + row)
                 pass
+            
+            #i += 1
     
     def visual_set_up(self, screen):
         #print(self.grid)
@@ -96,15 +108,16 @@ class Grid:
         #print(temp)
         temp.display(screen)
 
-        for i in range(3):
+        for i in range(5):
             y2, x2 = location
             mod = (random.randint(-1, 1), random.randint(-1, 1))
             x2 += mod[0]
             y2 += mod[1]
-            print(y2, x2)
             try: 
+                #print(x2, y2, background.grid[y2][x2])
                 if x2 >= 0 and y2 > 0: 
                     if type(background.grid[y2][x2]) != Bomb:
                             background.grid[y2][x2].display(screen)
             except:
                 pass
+        #print("\n")
