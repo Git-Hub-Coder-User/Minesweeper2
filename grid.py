@@ -96,20 +96,18 @@ class Grid:
                     pass
 
     #This might blow up
-    def delete(self, background, screen, location, behavior = 0):
+    def delete(self, background, screen, location, behavior = 0, repeat = 5):
         y, x = location
         temp = background.grid[y][x]
         #print(temp)
         temp.display(screen)
-        for i in range(5):
+        for i in range(repeat):
             y2, x2 = location
             mod = (random.randint(-1, 1), random.randint(-1, 1))
             x2 += mod[0]
-            y2 += mod[1]
-            
-            print(background.grid[y2][x2])
-            if type(background.grid[y2][x2]) != Bomb: 
-                try: 
+            y2 += mod[1] 
+            try: 
+                if type(background.grid[y2][x2]) != Bomb:
                     if behavior == 0: 
                         if x2 >= 0 and y2 > 0: 
                             background.grid[y2][x2].display(screen)
@@ -117,10 +115,9 @@ class Grid:
                                 background.blank_tile(screen, (y2, x2))
                     elif behavior == 1:
                         if x2 >= 0 and y2 > 0: 
-                            background.delete(background, screen, (y2, x2))
-                            break
-                except:
-                    pass
+                            background.delete(background, screen, (y2, x2), 0, 8)
+            except:
+                pass
 
     
     def remove_flag(self, flags, position, screen):

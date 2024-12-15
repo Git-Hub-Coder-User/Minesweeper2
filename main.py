@@ -50,11 +50,13 @@ def main():
                             if background.grid[y][x].displayed == False:
                                 foreground.delete(background, screen, (y, x))
                     elif first_click == False:
-                        if type(background.grid[y][x]) == Bomb: 
-                            background = generate_puzzle()
-                        else:
-                            foreground.delete(background, screen, (y, x), 1)
-                            first_click = True
+                        while True: 
+                            if type(background.grid[y][x]) == Bomb: 
+                                background = generate_puzzle()
+                            else:
+                                foreground.delete(background, screen, (y, x), 1)
+                                first_click = True
+                                break
                 elif mouse_button[2]:
                     if type(flags.grid[y][x]) == int: 
                         flags.grid[y][x] = Flag((y, x))
