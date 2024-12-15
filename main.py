@@ -45,7 +45,7 @@ def won_game():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 screen.fill((225, 225, 225))
                 surface = font.render("Press space to play again.  ", True, (0, 225, 0))
-            if event.key == pygame.K_SPACE:
+            if event.type == pygame.K_SPACE:
                 main()
 
 def main():

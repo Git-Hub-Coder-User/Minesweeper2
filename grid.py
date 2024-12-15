@@ -108,16 +108,18 @@ class Grid:
             x2 += mod[0]
             y2 += mod[1] 
             try: 
+                print(behavior)
                 if type(background.grid[y2][x2]) != Bomb:
+                    print("Here", behavior)
                     if behavior == 0: 
                         if x2 >= 0 and y2 > 0: 
                             if type(flags.grid[y2][x2]) != Flag:
                                 background.grid[y2][x2].display(screen)
                                 if type(background.grid[y2][x2]) == Blank:
                                     background.blank_tile(screen, (y2, x2))
-                    elif behavior == 1:
-                        if x2 >= 0 and y2 > 0: 
-                            background.delete(background, screen, (y2, x2), 0, 8)
+                if behavior == 1:
+                    if x2 >= 0 and y2 > 0: 
+                        background.delete(background, screen, (y2, x2), 0, 8)
             except:
                 pass
 
