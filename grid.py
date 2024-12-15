@@ -106,11 +106,10 @@ class Grid:
             mod = (random.randint(-1, 1), random.randint(-1, 1))
             x2 += mod[0]
             y2 += mod[1]
-            try: 
-                #print(x2, y2, background.grid[y2][x2])
-                if type(background.grid[y2][x2]) == Bomb: 
-                    print("There's a bomb")
-                else:
+            
+            print(background.grid[y2][x2])
+            if type(background.grid[y2][x2]) != Bomb: 
+                try: 
                     if behavior == 0: 
                         if x2 >= 0 and y2 > 0: 
                             background.grid[y2][x2].display(screen)
@@ -118,10 +117,10 @@ class Grid:
                                 background.blank_tile(screen, (y2, x2))
                     elif behavior == 1:
                         if x2 >= 0 and y2 > 0: 
-                            background.delete(background, screen, (x2, y2))
+                            background.delete(background, screen, (y2, x2))
                             break
-            except:
-                pass
+                except:
+                    pass
 
     
     def remove_flag(self, flags, position, screen):
