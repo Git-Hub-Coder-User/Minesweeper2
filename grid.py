@@ -7,6 +7,7 @@ from tile import(
     Number, 
     Cover, 
     Bomb, 
+    Flag
 )
 
 class NegativeNumber(Exception):
@@ -96,7 +97,7 @@ class Grid:
                     pass
 
     #This might blow up
-    def delete(self, background, screen, location, behavior = 0, repeat = 5):
+    def delete(self, background, flags, screen, location, behavior = 0, repeat = 5):
         y, x = location
         temp = background.grid[y][x]
         #print(temp)
@@ -110,9 +111,10 @@ class Grid:
                 if type(background.grid[y2][x2]) != Bomb:
                     if behavior == 0: 
                         if x2 >= 0 and y2 > 0: 
-                            background.grid[y2][x2].display(screen)
-                            if type(background.grid[y2][x2]) == Blank:
-                                background.blank_tile(screen, (y2, x2))
+                            if type(flags.grid[y][x]) != Flag:
+                                background.grid[y2][x2].display(screen)
+                                if type(background.grid[y2][x2]) == Blank:
+                                    background.blank_tile(screen, (y2, x2))
                     elif behavior == 1:
                         if x2 >= 0 and y2 > 0: 
                             background.delete(background, screen, (y2, x2), 0, 8)

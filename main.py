@@ -31,6 +31,22 @@ def check_win(background, flags):
     
     return returned
 
+def won_game():
+    font = pygame.font.SysFont(None, 96)
+    surface = font.render("You won! ", True, (0, 225, 0))
+    screen.blit(surface, (200, 100))
+    surface = font.render(f"Time: {int(pygame.time.get_ticks() * 1000)}", True, (0, 225, 0))
+    screen.blit(surface, (200, 150)) 
+    while True: 
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                screen.fill((225, 225, 225))
+                surface = font.render("Press space to play again.  ", True, (0, 225, 0))
+            if event.key == pygame.K_SPACE:
+                main()
 
 def main():
     screen.fill((225, 225, 225))
@@ -60,16 +76,17 @@ def main():
                     if first_click == True:
                         if type(flags.grid[y][x]) == int:
                             if background.grid[y][x].displayed == False:
-                                foreground.delete(background, screen, (y, x))
+                                foreground.delete(background, flags, screen, (y, x))
                     elif first_click == False:
                         while True: 
                             if type(background.grid[y][x]) == Bomb: 
                                 background = generate_puzzle()
                             else:
-                                foreground.delete(background, screen, (y, x), 1)
+                                foreground.delete(background, flags, screen, (y, x), 1)
                                 first_click = True
                                 break
                 elif mouse_button[2]:
+                    print(flags)
                     if type(flags.grid[y][x]) == int: 
                         flags.grid[y][x] = Flag((y, x))
                         flags.grid[y][x].display(screen)
@@ -85,7 +102,9 @@ def main():
         #foreground.visual_set_up(screen)
 
         if check_win(background, flags):
-            print("WON")
+            print("won")
+            won_game()
+            break
 
         pygame.display.update()
         clock.tick(30)
