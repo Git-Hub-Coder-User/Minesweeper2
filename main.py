@@ -13,7 +13,6 @@ from tile import(
 pygame.init()
 screen = pygame.display.set_mode((800, 800))
 clock = pygame.time.Clock()
-time = 0
 
 def generate_puzzle(): 
     background = Grid()
@@ -32,11 +31,12 @@ def check_win(background, flags):
     
     return returned
 
-def won_game():
+def won_game(time):
+    print(time)
     font = pygame.font.SysFont(None, 84)
     surface = font.render("You Won! ", True, (0, 225, 0))
     screen.blit(surface, (300, 100))
-    surface = font.render(f"Time: {int((pygame.time.get_ticks() - time) / 1000 )} seconds", True, (0, 225, 0))
+    surface = font.render(f"Time: {int(time / 1000)} seconds", True, (0, 225, 0))
     screen.blit(surface, (200, 150)) 
     surface = font.render("Press space to play again", True, (0, 105, 50))
     screen.blit(surface, (50, 200))
@@ -48,7 +48,7 @@ def won_game():
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    main(time)
+                    main()
 
 def lost_game():
     font = pygame.font.SysFont(None, 84)
@@ -65,10 +65,10 @@ def lost_game():
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    main(time)
+                    main()
 
-def main(time):
-    time += pygame.time.get_ticks()
+def main():
+    time = 0
     screen.fill((225, 225, 225))
 
     flags = Grid()
@@ -80,6 +80,7 @@ def main(time):
     first_click = False
 
     while True:
+        #print(time)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -123,11 +124,11 @@ def main(time):
         #foreground.visual_set_up(screen)
 
         if check_win(background, flags):
-            won_game()
+            won_game(time)
             break
 
         pygame.display.update()
-        clock.tick(30)
+        time += clock.tick(30)
 
         
 
@@ -135,6 +136,6 @@ def main(time):
     
 
 
-main(time)
+main()
 #won_game()
 # print(background)
