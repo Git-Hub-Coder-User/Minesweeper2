@@ -112,6 +112,7 @@ class Grid:
                     if behavior == 0: 
                         if x2 >= 0 and y2 > 0: 
                             if type(flags.grid[y][x]) != Flag:
+                                print(type(flags.grid[y][x]))
                                 background.grid[y2][x2].display(screen)
                                 if type(background.grid[y2][x2]) == Blank:
                                     background.blank_tile(screen, (y2, x2))

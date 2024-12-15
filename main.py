@@ -86,8 +86,7 @@ def main():
                                 first_click = True
                                 break
                 elif mouse_button[2]:
-                    print(flags)
-                    if type(flags.grid[y][x]) == int: 
+                    if flags.grid[y][x] == 0:
                         flags.grid[y][x] = Flag((y, x))
                         flags.grid[y][x].display(screen)
                     else:
