@@ -20,6 +20,20 @@ def generate_puzzle():
     background.convert_grid()
     return background
 
+def check_win(background, flags):
+    returned = True
+    for y in range(8):
+        for x in range(8):
+            if type(background.grid[y][x]) == Bomb and type(flags.grid[y][x]) == Flag:
+                pass
+            elif type(background.grid[y][x]) == Bomb and type(flags.grid[y][x]) == int:
+                returned = False
+            elif type(background.grid[y][x]) != Bomb and type(flags.grid[y][x]) == Flag:
+                returned = False
+    
+    return returned
+
+
 def main():
     screen.fill((225, 225, 225))
 
@@ -71,6 +85,9 @@ def main():
         
         #foreground.visual_set_up(screen)
 
+        if check_win(background, flags):
+            pass
+        
         pygame.display.update()
         clock.tick(30)
 

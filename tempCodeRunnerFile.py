@@ -1,2 +1,1 @@
-ayed == False:
-                                foreground.delete(background, screen, (y, x))
+check_win(background, flags)
