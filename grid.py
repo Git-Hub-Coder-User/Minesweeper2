@@ -47,9 +47,8 @@ class Grid:
                 else:
                     pass
 
-    def generate_bombs(self):
-        #i should be 16
-        for i in range(16):
+    def generate_bombs(self, bombs = 16):
+        for i in range(bombs):
             while True:
                 col = random.randint(0, 7)
                 row = random.randint(0, 7)
@@ -98,6 +97,7 @@ class Grid:
 
     #This might blow up
     def delete(self, background, flags, screen, location, behavior = 0, repeat = 5):
+        print("Delete: Active")
         y, x = location
         temp = background.grid[y][x]
         #print(temp)
@@ -108,13 +108,15 @@ class Grid:
             x2 += mod[0]
             y2 += mod[1] 
             try: 
+                print("Line 111")
                 if type(background.grid[y2][x2]) != Bomb:
                     if behavior == 0: 
                         if x2 >= 0 and y2 > 0: 
                             if type(flags.grid[y2][x2]) != Flag:
                                 background.grid[y2][x2].display(screen)
                                 if type(background.grid[y2][x2]) == Blank:
-                                    background.blank_tile(screen, (y2, x2))
+                                    background.blank_tile(screen, (y2, x2), background, flags)
+                                    print("Ran")
                     if behavior == 1:
                         if x2 >= 0 and y2 > 0: 
                             if type(flags.grid[y2][x2]) != Flag:
@@ -129,19 +131,22 @@ class Grid:
         temp = Cover((y, x))
         temp.display(screen)
 
-    def blank_tile(self, screen, location):
-        #print("This is in blank_tile()")
+    def blank_tile(self, screen, location, background, flags):
+        y, x = location 
+        print("This is in blank_tile()")
         for mod in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
             y, x = location
+            y2 = y + mod[1]
+            x2 = x + mod[0]
+            print(x2, y2)
             try:
-                if (y + mod[1]) >= 0 and  (x + mod[0]) >= 0: 
-                    #print("Before the delete")
+                if (y2) >= 0 and  (x2) >= 0: 
                     #self.grid[y + mod[1]][x + mod[0]].delete(self, screen, location)
-                    self.grid[y + mod[1]][x + mod[0]].delete(screen)
-                    #print("After the delete")
+                    #self.grid[y + mod[1]][x + mod[0]].delete(background, flags, screen, location)
+                    self.grid[y2][x2].delete(background, flags, screen, (y2, x2))
+                    print("SFDJKHDFS")
+                    if type(self.grid[y2][x2]) == Blank:
+                        background.blank_tile(screen, (y2, x2), background, flags)
             except:
-                #print("Except ran")
-                #print(self.grid[y + mod[1]][x + mod[0]])
+                print("Except ran")
                 pass
-    
-        self.grid[y + mod[1]][x + mod[0]].delete(self, screen, location)
