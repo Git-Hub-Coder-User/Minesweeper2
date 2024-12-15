@@ -45,7 +45,7 @@ class Bomb(Tile):
 
 		surface = self.font.render(f"{self.x}, {self.y}", True, (225, (self.y + self.x) * 10, 0))
 
-		screen.blit(surface, self.tile_rect)
+		#screen.blit(surface, self.tile_rect)
 
 		#print("This is Bomb's display method: ", self.x, self.y)
 

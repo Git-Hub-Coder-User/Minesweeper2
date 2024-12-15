@@ -1,4 +1,1 @@
-, flags):
-            print("won")
-            won_game()
-            break
+background.grid[y][x]

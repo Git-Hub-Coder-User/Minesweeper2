@@ -32,27 +32,38 @@ def check_win(background, flags):
     return returned
 
 def won_game():
-    font = pygame.font.SysFont(None, 96)
-    surface = font.render("You won! ", True, (0, 225, 0))
-    screen.blit(surface, (200, 100))
+    font = pygame.font.SysFont(None, 84)
+    surface = font.render("You Won! ", True, (0, 225, 0))
+    screen.blit(surface, (300, 100))
     surface = font.render(f"Time: {int(pygame.time.get_ticks() / 1000 )} seconds", True, (0, 225, 0))
     screen.blit(surface, (200, 150)) 
+    surface = font.render("Press space to play again", True, (0, 105, 50))
+    screen.blit(surface, (50, 200))
     pygame.display.update()
     while True: 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                print("*gasp* The mouse has been clicked")                
-                image = pygame.image.load("img/backgroud_img.png").convert_alpha()
-                image = pygame.transform.scale(image, (400, 400))
-                screen.blit(image, (0, 0))
-                surface = font.render("Press space to play again.  ", True, (0, 225, 0))
-                screen.blit(surface, (200, 150))
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    print("Space key acknowledged")
+                    main()
+
+def lost_game():
+    font = pygame.font.SysFont(None, 84)
+    surface = font.render("You Lost! ", True, (225, 0, 0))
+    screen.blit(surface, (300, 100))
+    surface = font.render("Press space to play again", True, (0, 105, 50))
+    screen.blit(surface, (50, 200))
+    pygame.display.update()
+
+    while True: 
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
                     main()
 
 def main():
@@ -84,6 +95,8 @@ def main():
                         if type(flags.grid[y][x]) == int:
                             if background.grid[y][x].displayed == False:
                                 foreground.delete(background, flags, screen, (y, x))
+                                if type(background.grid[y][x]) == Bomb:
+                                    lost_game()
                     elif first_click == False:
                         while True: 
                             if type(background.grid[y][x]) == Bomb: 
@@ -108,7 +121,6 @@ def main():
         #foreground.visual_set_up(screen)
 
         if check_win(background, flags):
-            print("won")
             won_game()
             break
 
@@ -121,6 +133,6 @@ def main():
     
 
 
-#main()
-won_game()
+main()
+#won_game()
 # print(background)
