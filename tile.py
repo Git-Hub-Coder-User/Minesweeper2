@@ -106,4 +106,4 @@ class Flag(Cover):
 		self.tile_rect.centerx += 73
 		self.tile_rect.centery += 63
 		screen.blit(self.flag, self.tile_rect)
-		print(self.x, self.y)
+		#print(self.x, self.y)

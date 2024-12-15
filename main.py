@@ -32,7 +32,7 @@ def check_win(background, flags):
     return returned
 
 def won_game(time):
-    print(time)
+    #print(time)
     font = pygame.font.SysFont(None, 84)
     surface = font.render("You Won! ", True, (0, 225, 0))
     screen.blit(surface, (300, 100))
