@@ -13,6 +13,7 @@ from tile import(
 pygame.init()
 screen = pygame.display.set_mode((800, 800))
 clock = pygame.time.Clock()
+time = 0
 
 def generate_puzzle(): 
     background = Grid()
@@ -35,7 +36,7 @@ def won_game():
     font = pygame.font.SysFont(None, 84)
     surface = font.render("You Won! ", True, (0, 225, 0))
     screen.blit(surface, (300, 100))
-    surface = font.render(f"Time: {int(pygame.time.get_ticks() / 1000 )} seconds", True, (0, 225, 0))
+    surface = font.render(f"Time: {int((pygame.time.get_ticks() - time) / 1000 )} seconds", True, (0, 225, 0))
     screen.blit(surface, (200, 150)) 
     surface = font.render("Press space to play again", True, (0, 105, 50))
     screen.blit(surface, (50, 200))
@@ -47,7 +48,7 @@ def won_game():
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    main()
+                    main(time)
 
 def lost_game():
     font = pygame.font.SysFont(None, 84)
@@ -64,9 +65,10 @@ def lost_game():
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    main()
+                    main(time)
 
-def main():
+def main(time):
+    time += pygame.time.get_ticks()
     screen.fill((225, 225, 225))
 
     flags = Grid()
@@ -106,11 +108,11 @@ def main():
                                 first_click = True
                                 break
                 elif mouse_button[2]:
-                    if flags.grid[y][x] == 0:
-                        flags.grid[y][x] = Flag((y, x))
-                        flags.grid[y][x].display(screen)
-                    else:
-                        if background.grid[y][x].displayed == False: 
+                    if background.grid[y][x].displayed == False: 
+                        if flags.grid[y][x] == 0:
+                            flags.grid[y][x] = Flag((y, x))
+                            flags.grid[y][x].display(screen)
+                        else:
                             foreground.remove_flag(flags, (y, x), screen)
         
 
@@ -133,6 +135,6 @@ def main():
     
 
 
-main()
+main(time)
 #won_game()
 # print(background)
