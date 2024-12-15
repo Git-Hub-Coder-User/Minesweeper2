@@ -13,6 +13,7 @@ from tile import(
 pygame.init()
 screen = pygame.display.set_mode((800, 800))
 clock = pygame.time.Clock()
+first_click = False
 
 
 def main():
@@ -45,10 +46,13 @@ def main():
                 #print(int(x), int(y), background.grid[y][x])
                 mouse_button = pygame.mouse.get_pressed(num_buttons=3)
                 if mouse_button[0] == True:
-                    if background.grid[int(y)][int(x)].displayed == False:
-                        foreground.delete(background, screen, (y, x))
+                    if first_click == True:
+                        if background.grid[y][x].displayed == False:
+                            foreground.delete(background, screen, (y, x))
+                    else:
+                        foreground.delete(background, screen, (y, x), 1)
                 elif mouse_button[2]:
-                    if type(flags.grid[y][x]) == Flag: 
+                    if type(flags.grid[y][x]) == int: 
                         flags.grid[y][x] = Flag((y, x))
                         flags.grid[y][x].display(screen)
         

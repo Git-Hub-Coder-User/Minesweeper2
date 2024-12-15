@@ -96,33 +96,43 @@ class Grid:
                     pass
 
     #This might blow up
-    def delete(self, background, screen, location):
+    def delete(self, background, screen, location, behavior = 0):
         y, x = location
-
-        #temp = self.grid[y][x]
-        #self.grid[y][x] = None
-        #del temp
-
-        
         temp = background.grid[y][x]
         #print(temp)
         temp.display(screen)
 
-        for i in range(5):
-            y2, x2 = location
-            mod = (random.randint(-1, 1), random.randint(-1, 1))
-            x2 += mod[0]
-            y2 += mod[1]
-            try: 
-                #print(x2, y2, background.grid[y2][x2])
-                if x2 >= 0 and y2 > 0: 
-                    if type(background.grid[y2][x2]) != Bomb:
-                        background.grid[y2][x2].display(screen)
-                        if type(background.grid[y2][x2]) == Blank:
-                            background.blank_tile(screen, (y2, x2))
-                            print("Made it to line 123", i)
-            except:
-                pass
+        if behavior == 0: 
+            for i in range(5):
+                y2, x2 = location
+                mod = (random.randint(-1, 1), random.randint(-1, 1))
+                x2 += mod[0]
+                y2 += mod[1]
+                try: 
+                    #print(x2, y2, background.grid[y2][x2])
+                    if x2 >= 0 and y2 > 0: 
+                        if type(background.grid[y2][x2]) != Bomb:
+                            background.grid[y2][x2].display(screen)
+                            if type(background.grid[y2][x2]) == Blank:
+                                background.blank_tile(screen, (y2, x2))
+                                print("Made it to line 123", i)
+                except:
+                    pass
+        
+        elif behavior == 1: 
+            for i in range(5):
+                y2, x2 = location
+                mod = (random.randint(-1, 1), random.randint(-1, 1))
+                x2 += mod[0]
+                y2 += mod[1]
+                try: 
+                    if x2 >= 0 and y2 > 0: 
+                        if type(background.grid[y2][x2]) != Bomb:
+                            background.delete(background, screen, (x2, y2))
+                            if type(background.grid[y2][x2]) == Blank:
+                                background.blank_tile(screen, (y2, x2))
+                except:
+                    pass
         
     def blank_tile(self, screen, location):
         print("This is in blank_tile()")
