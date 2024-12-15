@@ -4,13 +4,14 @@ from abc import ABC, abstractmethod
 #position needs to be y, x
 class Tile(ABC):
 	def __init__(self, position = None):
-		self.position = position
 		self.font = pygame.font.SysFont(None, 48)
-		self.y, self.x = self.position
+		self.y, self.x = position
 		self.dark = "img/dark_tile.png"
 		self.light = "img/light_tile.png"
-	
+		self.displayed = False
+
 	def display(self, screen):
+		self.displayed = True
 		converted_y = (self.y * 100) 
 		converted_x = (self.x * 100)
 		if (self.y + self.x) % 2 == 0:
@@ -48,7 +49,6 @@ class Bomb(Tile):
 
 		#print("This is Bomb's display method: ", self.x, self.y)
 
-
 class Blank(Tile):
 	def __init__(self, position = None):
 		super().__init__(position)
@@ -56,7 +56,6 @@ class Blank(Tile):
 	def __str__(self):
 		return "Blank"
 	
-
 class Cover(Tile):
 	def __init__(self, position = None):
 		super().__init__(position)
@@ -95,3 +94,16 @@ class Number(Tile):
 		self.tile_rect.centery += 75 + 12
 
 		screen.blit(surface, self.tile_rect)
+
+class Flag(Cover):
+	def __init__(self, position):
+		super().__init__(position)
+
+	def display(self, screen):
+		super().display(screen)
+		self.flag = pygame.image.load("img/flag_img.png")
+		self.flag = pygame.transform.scale(self.flag, (75, 75))
+		self.tile_rect.centerx += 73
+		self.tile_rect.centery += 63
+		screen.blit(self.flag, self.tile_rect)
+		print(self.x, self.y)

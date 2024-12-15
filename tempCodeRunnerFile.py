@@ -1,1 +1,1 @@
-print
+pygame.get_pressed(num_buttons=3)

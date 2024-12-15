@@ -6,7 +6,8 @@ from tile import(
     Blank, 
     Number, 
     Cover, 
-    Bomb
+    Bomb,
+    Flag
 )
 
 pygame.init()
@@ -17,9 +18,10 @@ clock = pygame.time.Clock()
 def main():
     screen.fill((225, 225, 225))
 
+    flags = Grid()
 
-    background = Grid(0)
-    #background.generate_bombs()
+    background = Grid()
+    background.generate_bombs()
     #print(background.grid)
     background.convert_grid()
     #background.visual_set_up(screen)
@@ -38,10 +40,17 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
                 #print(pygame.mouse.get_pos())
-                y = y / 100
-                x = x / 100
+                y = int(y / 100)
+                x = int(x / 100)
                 #print(int(x), int(y), background.grid[y][x])
-                foreground.delete(background, screen, (int(y), int(x)))
+                mouse_button = pygame.mouse.get_pressed(num_buttons=3)
+                if mouse_button[0] == True:
+                    if background.grid[int(y)][int(x)].displayed == False:
+                        foreground.delete(background, screen, (y, x))
+                elif mouse_button[2]:
+                    if type(flags.grid[y][x]) == Flag: 
+                        flags.grid[y][x] = Flag((y, x))
+                        flags.grid[y][x].display(screen)
         
 
         # background.visual_set_up(screen)
