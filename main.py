@@ -16,7 +16,7 @@ clock = pygame.time.Clock()
 
 def generate_puzzle(): 
     background = Grid()
-    #background.generate_bombs()
+    background.generate_bombs()
     background.convert_grid()
     return background
 
@@ -35,18 +35,25 @@ def won_game():
     font = pygame.font.SysFont(None, 96)
     surface = font.render("You won! ", True, (0, 225, 0))
     screen.blit(surface, (200, 100))
-    surface = font.render(f"Time: {int(pygame.time.get_ticks() * 1000)}", True, (0, 225, 0))
+    surface = font.render(f"Time: {int(pygame.time.get_ticks() / 1000 )} seconds", True, (0, 225, 0))
     screen.blit(surface, (200, 150)) 
+    pygame.display.update()
     while True: 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                screen.fill((225, 225, 225))
+                print("*gasp* The mouse has been clicked")                
+                image = pygame.image.load("img/backgroud_img.png").convert_alpha()
+                image = pygame.transform.scale(image, (400, 400))
+                screen.blit(image, (0, 0))
                 surface = font.render("Press space to play again.  ", True, (0, 225, 0))
-            if event.type == pygame.K_SPACE:
-                main()
+                screen.blit(surface, (200, 150))
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    print("Space key acknowledged")
+                    main()
 
 def main():
     screen.fill((225, 225, 225))
@@ -100,10 +107,10 @@ def main():
         
         #foreground.visual_set_up(screen)
 
-        #if check_win(background, flags):
-            #print("won")
-            #won_game()
-            #break
+        if check_win(background, flags):
+            print("won")
+            won_game()
+            break
 
         pygame.display.update()
         clock.tick(30)
@@ -114,5 +121,6 @@ def main():
     
 
 
-main()
+#main()
+won_game()
 # print(background)

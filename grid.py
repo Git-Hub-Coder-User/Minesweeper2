@@ -115,10 +115,10 @@ class Grid:
                                 background.grid[y2][x2].display(screen)
                                 if type(background.grid[y2][x2]) == Blank:
                                     background.blank_tile(screen, (y2, x2))
-                if behavior == 1:
-                    if x2 >= 0 and y2 > 0: 
-                        print("Second round has been called")
-                        background.delete(background, flags, screen, (y2, x2), 0, 8)
+                    if behavior == 1:
+                        if x2 >= 0 and y2 > 0: 
+                            if type(flags.grid[y2][x2]) != Flag:
+                                background.delete(background, flags, screen, (y2, x2), 0, 8)
             except:
                 pass
 
@@ -130,17 +130,18 @@ class Grid:
         temp.display(screen)
 
     def blank_tile(self, screen, location):
-        print("This is in blank_tile()")
+        #print("This is in blank_tile()")
         for mod in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
             y, x = location
             try:
                 if (y + mod[1]) >= 0 and  (x + mod[0]) >= 0: 
-                    print("Before the delete")
+                    #print("Before the delete")
                     #self.grid[y + mod[1]][x + mod[0]].delete(self, screen, location)
                     self.grid[y + mod[1]][x + mod[0]].delete(screen)
-                    print("After the delete")
+                    #print("After the delete")
             except:
-                print("Except ran")
-                print(self.grid[y + mod[1]][x + mod[0]])
+                #print("Except ran")
+                #print(self.grid[y + mod[1]][x + mod[0]])
+                pass
     
         self.grid[y + mod[1]][x + mod[0]].delete(self, screen, location)
