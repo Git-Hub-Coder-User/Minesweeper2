@@ -16,7 +16,7 @@ clock = pygame.time.Clock()
 
 def generate_puzzle(): 
     background = Grid()
-    background.generate_bombs()
+    #background.generate_bombs()
     background.convert_grid()
     return background
 
@@ -100,10 +100,10 @@ def main():
         
         #foreground.visual_set_up(screen)
 
-        if check_win(background, flags):
-            print("won")
-            won_game()
-            break
+        #if check_win(background, flags):
+            #print("won")
+            #won_game()
+            #break
 
         pygame.display.update()
         clock.tick(30)
