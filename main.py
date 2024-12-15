@@ -24,9 +24,7 @@ def check_win(background, flags):
     returned = True
     for y in range(8):
         for x in range(8):
-            if type(background.grid[y][x]) == Bomb and type(flags.grid[y][x]) == Flag:
-                pass
-            elif type(background.grid[y][x]) == Bomb and type(flags.grid[y][x]) == int:
+            if type(background.grid[y][x]) == Bomb and type(flags.grid[y][x]) == int:
                 returned = False
             elif type(background.grid[y][x]) != Bomb and type(flags.grid[y][x]) == Flag:
                 returned = False
@@ -76,7 +74,8 @@ def main():
                         flags.grid[y][x] = Flag((y, x))
                         flags.grid[y][x].display(screen)
                     else:
-                        foreground.remove_flag(flags, (y, x), screen)
+                        if background.grid[y][x].displayed == False: 
+                            foreground.remove_flag(flags, (y, x), screen)
         
 
         # background.visual_set_up(screen)
@@ -86,8 +85,8 @@ def main():
         #foreground.visual_set_up(screen)
 
         if check_win(background, flags):
-            pass
-        
+            print("WON")
+
         pygame.display.update()
         clock.tick(30)
 
