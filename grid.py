@@ -133,7 +133,13 @@ class Grid:
                                 background.blank_tile(screen, (y2, x2))
                 except:
                     pass
-        
+    
+    def remove_flag(self, flags, position, screen):
+        y, x = position
+        flags.grid[y][x] = 0
+        temp = Cover((y, x))
+        temp.display(screen)
+
     def blank_tile(self, screen, location):
         print("This is in blank_tile()")
         for mod in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:

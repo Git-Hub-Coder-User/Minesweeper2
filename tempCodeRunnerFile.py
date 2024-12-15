@@ -1,1 +1,2 @@
-pygame.get_pressed(num_buttons=3)
+ayed == False:
+                                foreground.delete(background, screen, (y, x))

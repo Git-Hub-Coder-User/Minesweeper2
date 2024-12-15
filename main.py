@@ -13,24 +13,23 @@ from tile import(
 pygame.init()
 screen = pygame.display.set_mode((800, 800))
 clock = pygame.time.Clock()
-first_click = False
 
+def generate_puzzle(): 
+    background = Grid()
+    background.generate_bombs()
+    background.convert_grid()
+    return background
 
 def main():
     screen.fill((225, 225, 225))
 
     flags = Grid()
-
-    background = Grid()
-    background.generate_bombs()
-    #print(background.grid)
-    background.convert_grid()
-    #background.visual_set_up(screen)
-
+    background = generate_puzzle()
     foreground = Grid("")
-    #print(foreground)
     foreground.convert_grid()
     foreground.visual_set_up(screen)
+
+    first_click = False
 
     while True:
         for event in pygame.event.get():
@@ -47,14 +46,21 @@ def main():
                 mouse_button = pygame.mouse.get_pressed(num_buttons=3)
                 if mouse_button[0] == True:
                     if first_click == True:
-                        if background.grid[y][x].displayed == False:
-                            foreground.delete(background, screen, (y, x))
-                    else:
-                        foreground.delete(background, screen, (y, x), 1)
+                        if type(flags.grid[y][x]) == int:
+                            if background.grid[y][x].displayed == False:
+                                foreground.delete(background, screen, (y, x))
+                    elif first_click == False:
+                        if type(background.grid[y][x]) == Bomb: 
+                            background = generate_puzzle()
+                        else:
+                            foreground.delete(background, screen, (y, x), 1)
+                            first_click = True
                 elif mouse_button[2]:
                     if type(flags.grid[y][x]) == int: 
                         flags.grid[y][x] = Flag((y, x))
                         flags.grid[y][x].display(screen)
+                    else:
+                        foreground.remove_flag(flags, (y, x), screen)
         
 
         # background.visual_set_up(screen)
