@@ -77,9 +77,7 @@ def bottom_bar_flags(flags, screen):
 def bottom_bar_time(time, screen):
     font = pygame.font.SysFont(None, 36)
     time = font.render(f"{int(time / 1000)}", True, (225, 225, 225))
-    pygame.draw.rect(screen, (0, 105, 0), (550, 815, 50, 500))
-    pygame.draw.rect(screen, (0, 105, 0), (600, 815, 50, 500))
-    pygame.draw.rect(screen, (0, 105, 0), (650, 815, 50, 500))
+    pygame.draw.rect(screen, (0, 105, 0), (550, 815, 500, 500))
     screen.blit(time, (550, 815))
     second = font.render(f"seconds", True, (225, 225, 225))
     screen.blit(second, (585, 815))
