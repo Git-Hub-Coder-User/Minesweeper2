@@ -123,9 +123,9 @@ def main():
         
         #foreground.visual_set_up(screen)
 
-        #if check_win(background, flags):
-        #    #won_game(time)
-        #    #break
+        if check_win(background, flags):
+            won_game(time)
+            break
 
         pygame.display.update()
         time += clock.tick(30)
