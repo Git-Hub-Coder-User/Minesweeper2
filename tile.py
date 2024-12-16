@@ -56,6 +56,14 @@ class Blank(Tile):
 	def __str__(self):
 		return "Blank"
 	
+	def display(self, screen):
+		super().display(screen)
+		surface = self.font.render("0", True, (0, 0, 0))
+		self.tile_rect.centerx += 75 + 12
+		self.tile_rect.centery += 75 + 12
+		screen.blit(surface, self.tile_rect)
+
+	
 class Cover(Tile):
 	def __init__(self, position = None):
 		super().__init__(position)

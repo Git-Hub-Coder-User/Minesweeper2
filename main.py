@@ -16,7 +16,7 @@ clock = pygame.time.Clock()
 
 def generate_puzzle(): 
     background = Grid()
-    #background.generate_bombs(5)
+    background.generate_bombs()
     background.convert_grid()
     return background
 

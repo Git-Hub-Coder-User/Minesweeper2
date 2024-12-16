@@ -115,13 +115,6 @@ class Grid:
                         if x2 >= 0 and y2 > 0: 
                             if type(flags.grid[y2][x2]) != Flag:
                                 background.grid[y2][x2].display(screen)
-                                #if type(background.grid[y2][x2]) == Blank:
-                                #    background.blank_tile(screen, (y2, x2), background, flags)
-                                #    print("Ran")   
-                                #if type(background.grid[y2][x2]) == Blank:
-                                #    for mod in Grid.square:
-                                #        if y + mod[1] >= 0 and x + mod[0]: 
-                                #            background.grid[y + mod[1]][x + mod[0]].display(screen)
 
                     if behavior == 1:
                         if x2 >= 0 and y2 > 0: 
@@ -137,23 +130,3 @@ class Grid:
         flags.grid[y][x] = 0
         temp = Cover((y, x))
         temp.display(screen)
-
-    #def blank_tile(self, screen, location, background, flags):
-    #    y, x = location 
-    #    print("This is in blank_tile()")
-    #    for mod in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
-    #        y, x = location
-    #        y2 = y + mod[1]
-    #        x2 = x + mod[0]
-    #        print(x2, y2)
-    #        try:
-    #            if (y2) >= 0 and  (x2) >= 0: 
-    #                #self.grid[y + mod[1]][x + mod[0]].delete(self, screen, location)
-    #                #self.grid[y + mod[1]][x + mod[0]].delete(background, flags, screen, location)
-    #                self.grid[y2][x2].delete(background, flags, screen, (y2, x2))
-    #                print("SFDJKHDFS")
-    #                if type(self.grid[y2][x2]) == Blank:
-    #                    background.blank_tile(screen, (y2, x2), background, flags)
-    #        except:
-    #            print("Except ran")
-    #            pass
