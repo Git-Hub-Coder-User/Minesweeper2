@@ -82,7 +82,7 @@ def bottom_bar_time(time, screen):
 
 def main():
     time = 0
-    num_flags = 1
+    num_flags = 16
     font = pygame.font.SysFont(None, 84)
     screen.fill((0, 105, 0))
 
