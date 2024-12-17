@@ -2,13 +2,10 @@ import pygame
 import sys
 from grid import Grid
 from tile import(
-    Tile, 
-    Blank, 
-    Number, 
-    Cover, 
     Bomb,
     Flag
 )
+
 
 pygame.init()
 screen = pygame.display.set_mode((800, 850))
@@ -101,8 +98,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
-            
+                sys.exit()           
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
                 #print(pygame.mouse.get_pos())
