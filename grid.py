@@ -120,10 +120,18 @@ class Grid:
                         if x2 >= 0 and y2 > 0: 
                             if type(flags.grid[y2][x2]) != Flag:
                                 background.delete(background, flags, screen, (y2, x2), 0, 8)
+                    
+
                 
             except:
                 pass
-
+        
+        if type(temp) == Blank:
+            for mod in Grid.square:
+                y, x = temp.location
+                y += mod[1]
+                x += mod[0]
+                background.delete(background, flags, screen, (y, x))
     
     def remove_flag(self, flags, position, screen):
         y, x = position
