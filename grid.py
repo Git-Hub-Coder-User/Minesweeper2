@@ -103,6 +103,7 @@ class Grid:
         temp = background.grid[y][x]
         #print(temp)
         temp.display(screen)
+        background.blank_tile(screen, (y, x), background)
         for i in range(repeat):
             y2, x2 = location
             mod = (random.randint(-1, 1), random.randint(-1, 1))
@@ -126,12 +127,25 @@ class Grid:
             except:
                 pass
         
-        if type(temp) == Blank:
+        #if type(temp) == Blank:
+        #    for mod in Grid.square:
+        #        y, x = temp.location
+        #        y += mod[1]
+        #        x += mod[0]
+        #        background.grid[y][x].display(screen)
+        #        if type(background.grid[y][x]) == Blank:
+        #            for mod in Grid.square
+    
+    def blank_tile(self, screen, location, background):
+        y, x = location
+        if type(background.grid[y][x]) == Blank:
             for mod in Grid.square:
-                y, x = temp.location
+                y, x = location
                 y += mod[1]
                 x += mod[0]
-                background.delete(background, flags, screen, (y, x))
+                background.grid[y][x].display(screen)
+                if type(background.grid[y][x]) == Blank:
+                    background.blank_tile(screen, (y, x), background)
     
     def remove_flag(self, flags, position, screen):
         y, x = position

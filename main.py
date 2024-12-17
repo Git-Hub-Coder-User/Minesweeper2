@@ -91,7 +91,8 @@ def main():
     foreground.convert_grid()
     foreground.visual_set_up(screen)
 
-    first_click = False
+    #first_click = False
+    first_click = True
 
     while True:
         #print(time)
