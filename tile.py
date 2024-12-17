@@ -94,7 +94,7 @@ class Number(Tile):
 		super().display(screen)
 
 		#surface = self.font.render(f"{self.number}, x: {self.x}, y{self.y}", True, (225, (self.y + self.x) * 10, 0))
-		surface = self.font.render(f"{self.number}", True, (225, (self.y + self.x) * 10, 0))
+		surface = self.font.render(f"{self.number}", True, (225, (self.y + self.x) * 10, 140 - ((self.y + self.x) * 10)))
 
 		#print("This is Number's display method: ", self.y, self.x)
 
