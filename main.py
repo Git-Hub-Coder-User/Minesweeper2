@@ -13,7 +13,8 @@ clock = pygame.time.Clock()
 
 def generate_puzzle(bombs): 
     background = Grid()
-    #background.generate_bombs(bombs)
+    background.generate_bombs(bombs)
+    print(background)
     background.convert_grid()
     return background
 
@@ -81,7 +82,7 @@ def bottom_bar_time(time, screen):
 
 def main():
     time = 0
-    num_flags = 16
+    num_flags = 1
     font = pygame.font.SysFont(None, 84)
     screen.fill((0, 105, 0))
 
@@ -91,8 +92,8 @@ def main():
     foreground.convert_grid()
     foreground.visual_set_up(screen)
 
-    #first_click = False
-    first_click = True
+    first_click = False
+    #first_click = True
 
     while True:
         #print(time)

@@ -121,31 +121,27 @@ class Grid:
                         if x2 >= 0 and y2 > 0: 
                             if type(flags.grid[y2][x2]) != Flag:
                                 background.delete(background, flags, screen, (y2, x2), 0, 8)
-                    
-
-                
+                    background.blank_tile(screen, location, background)
             except:
                 pass
-        
-        #if type(temp) == Blank:
-        #    for mod in Grid.square:
-        #        y, x = temp.location
-        #        y += mod[1]
-        #        x += mod[0]
-        #        background.grid[y][x].display(screen)
-        #        if type(background.grid[y][x]) == Blank:
-        #            for mod in Grid.square
     
-    def blank_tile(self, screen, location, background):
+    def blank_tile(self, screen, location, background, times_ran = 0):
+        print("called! ")
         y, x = location
-        if type(background.grid[y][x]) == Blank:
-            for mod in Grid.square:
-                y, x = location
-                y += mod[1]
-                x += mod[0]
-                background.grid[y][x].display(screen)
-                if type(background.grid[y][x]) == Blank:
-                    background.blank_tile(screen, (y, x), background)
+        times_ran += 1
+        if times_ran < 4: 
+            if type(background.grid[y][x]) == Blank:
+                for mod in Grid.square:
+                    y, x = location
+                    y += mod[1]
+                    x += mod[0]
+                    background.grid[y][x].display(screen)
+                    if type(background.grid[y][x]) == Blank:
+                        for mod in Grid.square:
+                            y, x = location
+                            y += mod[1]
+                            x += mod[0]
+                            background.grid[y][x].display(screen)
     
     def remove_flag(self, flags, position, screen):
         y, x = position
