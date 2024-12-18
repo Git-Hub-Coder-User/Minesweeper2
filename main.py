@@ -93,7 +93,6 @@ def main():
     foreground.visual_set_up(screen)
 
     first_click = False
-    #first_click = True
 
     while True:
         #print(time)
