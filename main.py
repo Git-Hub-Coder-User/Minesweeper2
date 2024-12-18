@@ -78,6 +78,9 @@ def bottom_bar_time(time, screen):
     screen.blit(time, (550, 815))
 
 def main():
+    right_click = pygame.image.load("img/right_click_img.png")
+    right_click = pygame.transform.scale(right_click, (40, 40))
+    screen.blit(right_click, (200, 815))
     time = 0
     num_flags = 16
     font = pygame.font.SysFont(None, 84)
