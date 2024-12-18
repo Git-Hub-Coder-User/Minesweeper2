@@ -43,11 +43,8 @@ class Bomb(Tile):
 		self.tile_rect.centery += 50
 		screen.blit(self.bomb, self.tile_rect)
 
-		surface = self.font.render(f"{self.x}, {self.y}", True, (225, (self.y + self.x) * 10, 0))
+		#surface = self.font.render(f"{self.x}, {self.y}", True, (225, (self.y + self.x) * 10, 0))
 
-		#screen.blit(surface, self.tile_rect)
-
-		#print("This is Bomb's display method: ", self.x, self.y)
 
 class Blank(Tile):
 	def __init__(self, position = None):
@@ -69,14 +66,12 @@ class Cover(Tile):
 		super().__init__(position)
 		self.light = "img/light_cover.png"
 		self.dark = "img/dark_cover.png"
-		# screen.blit(thingies)
 
 
 	def __str__(self):
 		return "cover"
 	
 	def display(self, screen):
-		#print("Called")
 		super().display(screen)
 	
 	def clicked(self):
@@ -92,12 +87,7 @@ class Number(Tile):
 	
 	def display(self, screen):
 		super().display(screen)
-
-		#surface = self.font.render(f"{self.number}, x: {self.x}, y{self.y}", True, (225, (self.y + self.x) * 10, 0))
 		surface = self.font.render(f"{self.number}", True, (225, (self.y + self.x) * 10, 140 - ((self.y + self.x) * 10)))
-
-		#print("This is Number's display method: ", self.y, self.x)
-
 		self.tile_rect.centerx += 75 + 12
 		self.tile_rect.centery += 75 + 12
 
@@ -114,4 +104,3 @@ class Flag(Cover):
 		self.tile_rect.centerx += 73
 		self.tile_rect.centery += 63
 		screen.blit(self.flag, self.tile_rect)
-		#print(self.x, self.y)

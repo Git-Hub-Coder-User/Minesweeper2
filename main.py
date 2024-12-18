@@ -14,7 +14,6 @@ clock = pygame.time.Clock()
 def generate_puzzle(bombs): 
     background = Grid()
     background.generate_bombs(bombs)
-    #print(background)
     background.convert_grid()
     return background
 
@@ -77,8 +76,6 @@ def bottom_bar_time(time, screen):
     time = font.render(f"{int(time / 1000)} seconds", True, (225, 225, 225))
     pygame.draw.rect(screen, (0, 105, 0), (550, 815, 500, 500))
     screen.blit(time, (550, 815))
-    #second = font.render(f"seconds", True, (225, 225, 225))
-    #screen.blit(second, (585, 815))
 
 def main():
     time = 0
@@ -103,10 +100,8 @@ def main():
                 sys.exit()           
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
-                #print(pygame.mouse.get_pos())
                 y = int(y / 100)
                 x = int(x / 100)
-                #print(int(x), int(y), background.grid[y][x])
                 mouse_button = pygame.mouse.get_pressed(num_buttons=3)
                 try: 
                     if mouse_button[0] == True:
@@ -139,28 +134,16 @@ def main():
                 finally: 
                     bottom_bar_flags(num_flags, screen)
         
-
-        # background.visual_set_up(screen)
-
-
-        
-        #foreground.visual_set_up(screen)
         if first_click == True:
             bottom_bar_time(time, screen)
 
-        #if check_win(background, flags):
-        #    won_game(time, font)
-        #    break
+        if check_win(background, flags):
+            won_game(time, font)
+            break
 
         pygame.display.update()
         time += clock.tick(30)
-
-        
-
-        # [print(pygame.mouse.get_pos())]
     
 
 
 main()
-#won_game()
-# print(background)

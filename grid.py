@@ -2,7 +2,6 @@ import random
 import pygame
 
 from tile import(
-    Tile, 
     Blank, 
     Number, 
     Cover, 
@@ -36,7 +35,6 @@ class Grid:
     def convert_grid(self):
         for y in range(8):
             for x in range(8): 
-                # print(y, x, self.grid[y][x])
                 if type(self.grid[y][x]) == Bomb:
                     pass
                 elif self.grid[y][x] == "":
@@ -54,10 +52,6 @@ class Grid:
             while True:
                 col = random.randint(0, 7)
                 row = random.randint(0, 7)
-                #col = 7 - i
-                #row = 0
-                # print(col, row)
-                # print(row, col)
                 if type(self.grid[row][col]) != Bomb:
                     self.grid[row][col] = Bomb(position = (row, col))
                     self.update_grid(col, row)
@@ -75,12 +69,8 @@ class Grid:
                         #print(f"Item: {self.grid[col + x][row + y]}, Location: {col + x}, {row + y}")
                         self.grid[row + y][col + x] += 1
                 else:
-                    #print(f"Failed the first test: {col + x}, {row + y}")
-                    #print((y + col) >= 0)
-                    #print((x + row) >= 0)
                     pass
             except:
-                #print("The except ran", x + col, y + row)
                 pass
             
             #i += 1
@@ -101,7 +91,6 @@ class Grid:
     def delete(self, background, flags, screen, location, behavior = 0, repeat = 5):
         y, x = location
         temp = background.grid[y][x]
-        #print(temp)
         temp.display(screen)
         for i in range(repeat):
             y2, x2 = location
